@@ -10,7 +10,7 @@
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <span class="badge bg-white text-primary px-3 py-2 rounded-pill shadow-sm mb-3 border fw-bold text-uppercase tracking-wider">✨ Solusi Laundry Cerdas</span>
                 <h1 class="display-4 fw-bold mb-3 lh-sm" style="color: #2b2d42;">
-                    P pakaian Bersih,<br>
+                    Pakaian Bersih,<br>
                     <span class="text-primary">Hidup Lebih Santai.</span>
                 </h1>
                 <p class="lead text-muted mb-4 opacity-75">
