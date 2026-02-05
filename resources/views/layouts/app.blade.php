@@ -120,6 +120,90 @@
         @yield('content')
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 py-5 border-top w-100" style="border-color: rgba(255,255,255,0.1) !important; margin-top: 80px !important; background-color: #1a1a1a !important;">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <!-- Brand Section -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3 text-white"><i class="bi bi-water me-2" style="color: #4361ee;"></i>Laundry Ibu</h5>
+                    <p class="text-white-50 small mb-3">Solusi laundry terpercaya dengan kualitas premium dan harga bersahabat.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Quick Links -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-3 text-white">Navigasi</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{{ url('/') }}" class="text-white-50 text-decoration-none hover-link">Beranda</a></li>
+                        <li class="mb-2"><a href="{{ url('/#services-section') }}" class="text-white-50 text-decoration-none hover-link">Layanan</a></li>
+                        @auth
+                            @if(Auth::user()->role === 'admin')
+                            <li class="mb-2"><a href="{{ url('/dashboard') }}" class="text-white-50 text-decoration-none hover-link">Dashboard</a></li>
+                            <li class="mb-2"><a href="{{ url('/products') }}" class="text-white-50 text-decoration-none hover-link">Manajemen Produk</a></li>
+                            @endif
+                        @endauth
+                    </ul>
+                </div>
+                <!-- Services -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-3 text-white">Layanan</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><span class="text-white-50"><i class="bi bi-check me-2"></i>Cuci Kering</span></li>
+                        <li class="mb-2"><span class="text-white-50"><i class="bi bi-check me-2"></i>Cuci & Setrika</span></li>
+                        <li class="mb-2"><span class="text-white-50"><i class="bi bi-check me-2"></i>Bedcover & Boneka</span></li>
+                        <li class="mb-2"><span class="text-white-50"><i class="bi bi-check me-2"></i>Express 2 Jam</span></li>
+                    </ul>
+                </div>
+                <!-- Contact Info -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-3 text-white">Hubungi Kami</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-telephone-fill me-2" style="color: #4361ee;"></i><a href="tel:0895417443160" class="text-white-50 text-decoration-none">0895417443160</a></li>
+                        <li class="mb-2"><i class="bi bi-envelope-fill me-2" style="color: #4361ee;"></i><a href="mailto:laundryibu@gmail.com" class="text-white-50 text-decoration-none">laundryibu@gmail.com</a></li>
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill me-2" style="color: #4361ee;"></i><span class="text-white-50">Jl Sariasih 2 No 48</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr style="border-color: rgba(255,255,255,0.2);">
+            
+            <!-- Bottom Footer -->
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="text-white-50 small mb-0">© 2026 Laundry Ibu. Semua hak dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none small me-3">Kebijakan Privasi</a>
+                    <a href="#" class="text-white-50 text-decoration-none small me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white-50 text-decoration-none small">Hubungi Kami</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .hover-link {
+            transition: color 0.3s ease;
+        }
+        .hover-link:hover {
+            color: #4361ee !important;
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

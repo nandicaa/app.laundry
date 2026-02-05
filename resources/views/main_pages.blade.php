@@ -83,8 +83,22 @@
 </div>
 
 <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5">
-    <div class="card-header bg-white border-0 py-3 px-4">
-        <h5 class="fw-bold mb-0 text-primary"><i class="bi bi-list-task me-2"></i>Daftar Transaksi Terbaru</h5>
+    <div class="card-header bg-white border-0 py-4 px-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold mb-0 text-primary"><i class="bi bi-list-task me-2"></i>Daftar Transaksi Terbaru</h5>
+        </div>
+        <!-- Filter Tabs -->
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="button" class="btn btn-primary filter-btn" data-filter="semua" style="border-radius: 20px;">
+                <i class="bi bi-list me-2"></i>Semua
+            </button>
+            <button type="button" class="btn btn-outline-primary filter-btn" data-filter="proses" style="border-radius: 20px;">
+                <i class="bi bi-hourglass-split me-2"></i>Belum Selesai
+            </button>
+            <button type="button" class="btn btn-outline-primary filter-btn" data-filter="selesai" style="border-radius: 20px;">
+                <i class="bi bi-check-circle me-2"></i>Selesai
+            </button>
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
@@ -96,7 +110,7 @@
                     <th class="text-center border-0" width="200">Aksi & Kontrol</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="transaction-list">
                 @foreach($transaksi as $key => $d)
                 @php
                     $status_raw = strtolower($d->status);
@@ -107,15 +121,22 @@
                         'selesai' => 'bg-success',
                         default => 'bg-light text-dark'
                     };
+                    $status_display = match($status_raw) {
+                        'pending' => 'PENDING',
+                        'diproses' => 'BELUM SELESAI',
+                        'siap ambil' => 'SIAP AMBIL',
+                        'selesai' => 'SELESAI',
+                        default => strtoupper($status_raw)
+                    };
                 @endphp
-                <tr>
+                <tr class="transaction-row" data-status="{{ $status_raw === 'selesai' ? 'selesai' : 'proses' }}">
                     <td class="px-4">
                         <div class="fw-bold text-dark">{{ $d->nama }}</div>
                         <small class="text-muted"><i class="bi bi-hash me-1"></i>Order ID: {{ $d->id }}</small>
                     </td>
                     <td>
                         <span class="badge {{ $badge }} rounded-pill px-3 py-2 fw-normal">
-                            {{ strtoupper($d->status) }}
+                            {{ $status_display }}
                         </span>
                     </td>
                     <td>
@@ -147,6 +168,35 @@
         </table>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                if (b.dataset.filter === filter) {
+                    b.classList.remove('btn-outline-primary');
+                    b.classList.add('btn-primary');
+                } else {
+                    b.classList.remove('btn-primary');
+                    b.classList.add('btn-outline-primary');
+                }
+            });
+            
+            // Filter rows
+            const rows = document.querySelectorAll('.transaction-row');
+            rows.forEach(row => {
+                if (filter === 'semua') {
+                    row.style.display = '';
+                } else {
+                    row.style.display = row.dataset.status === filter ? '' : 'none';
+                }
+            });
+        });
+    });
+</script>
 
 <!-- Modal Tambah -->
 <div class="modal fade" id="modalTambah" tabindex="-1">

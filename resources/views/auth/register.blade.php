@@ -12,36 +12,59 @@
                     <p class="text-muted">Bergabunglah dengan Laundry Ibu hari ini</p>
                 </div>
 
+                @if ($errors->any())
+                    <div class="alert alert-danger border-0 rounded-4 mb-4" role="alert">
+                        <div class="fw-bold mb-2">Perbaiki kesalahan berikut:</div>
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label fw-bold text-secondary">Nama Lengkap</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0 text-secondary"><i class="bi bi-person"></i></span>
-                            <input type="text" name="name" class="form-control bg-light border-start-0 ps-0" placeholder="Nama Lengkap" required>
+                            <input type="text" name="name" class="form-control bg-light border-start-0 ps-0 @error('name') is-invalid @enderror" placeholder="Nama Lengkap" value="{{ old('name') }}" required>
                         </div>
+                        @error('name')
+                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold text-secondary">Email Address</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0 text-secondary"><i class="bi bi-envelope"></i></span>
-                            <input type="email" name="email" class="form-control bg-light border-start-0 ps-0" placeholder="nama@email.com" required>
+                            <input type="email" name="email" class="form-control bg-light border-start-0 ps-0 @error('email') is-invalid @enderror" placeholder="nama@email.com" value="{{ old('email') }}" required>
                         </div>
+                        @error('email')
+                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold text-secondary">Password</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0 text-secondary"><i class="bi bi-lock"></i></span>
-                                <input type="password" name="password" class="form-control bg-light border-start-0 ps-0" placeholder="******" required>
+                                <input type="password" name="password" class="form-control bg-light border-start-0 ps-0 @error('password') is-invalid @enderror" placeholder="******" required>
                             </div>
+                            @error('password')
+                                <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="form-label fw-bold text-secondary">Konfirmasi Password</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0 text-secondary"><i class="bi bi-lock-fill"></i></span>
-                                <input type="password" name="password_confirmation" class="form-control bg-light border-start-0 ps-0" placeholder="******" required>
+                                <input type="password" name="password_confirmation" class="form-control bg-light border-start-0 ps-0 @error('password_confirmation') is-invalid @enderror" placeholder="******" required>
                             </div>
+                            @error('password_confirmation')
+                                <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
                     <div class="d-grid mb-4">

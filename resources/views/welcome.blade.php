@@ -113,8 +113,49 @@
 </section>
 @endif
 
+<!-- Flash Sale Section -->
+<section class="mb-5">
+    <div class="position-relative" style="background: linear-gradient(135deg, #ef476f 0%, #d90429 100%); border-radius: 30px; padding: 40px 20px; overflow: hidden;">
+        <div class="position-absolute top-0 end-0 opacity-10" style="font-size: 200px;">
+            <i class="bi bi-lightning-fill"></i>
+        </div>
+        <div class="container position-relative z-1">
+            <div class="row align-items-center">
+                <div class="col-lg-7 text-white mb-4 mb-lg-0">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge bg-white text-danger px-3 py-2 rounded-pill fw-bold">⚡ FLASH SALE</span>
+                        <span class="text-white fw-bold opacity-75">Hanya Hari Ini!</span>
+                    </div>
+                    <h2 class="display-5 fw-bold mb-3">Diskon Hingga 40%</h2>
+                    <p class="lead opacity-90 mb-4">Untuk semua layanan laundry pilihan. Kesempatan terbatas, jangan sampai terlewat!</p>
+                    <div class="d-flex gap-2 align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Promo berlaku untuk pembelian hari ini</span>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center mb-4">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Gratis ongkos jemput untuk pemesanan 2kg+</span>
+                    </div>
+                    @auth
+                    <a href="#services-section" class="btn btn-white btn-lg rounded-pill fw-bold px-5" style="color: #ef476f;">
+                        <i class="bi bi-lightning-charge me-2"></i>Lihat Promo
+                    </a>
+                    @else
+                    <a href="{{ route('register') }}" class="btn btn-white btn-lg rounded-pill fw-bold px-5" style="color: #ef476f;">
+                        <i class="bi bi-lightning-charge me-2"></i>Daftar Sekarang
+                    </a>
+                    @endauth
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div style="font-size: 150px; animation: bounce 2s infinite;">🎉</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Services Section -->
-<section class="container mb-5">
+<section class="container mb-5" id="services-section">
     <div class="text-center mb-5">
         <h6 class="text-uppercase text-primary fw-bold tracking-wider">Layanan Kami</h6>
         <h2 class="fw-bold display-6">Pilih Paket Sesuai Kebutuhan</h2>
